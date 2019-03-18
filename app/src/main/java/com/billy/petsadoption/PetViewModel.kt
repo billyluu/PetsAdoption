@@ -28,7 +28,7 @@ class PetViewModel(var context: Context, var type: String, var binding: Fragment
                     var adapter = MyAdapter(context, list)
                     context.runOnUiThread {
                         binding.adapter = adapter
-
+                        progressView.close()
                     }
                 }
             })
