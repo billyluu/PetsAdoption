@@ -6,12 +6,19 @@ import android.util.Log
 import com.billy.petsadoption.adapter.MyAdapter
 import com.billy.petsadoption.databinding.FragmentPetsBinding
 import com.billy.petsadoption.model.Pet
+import com.billy.petsadoption.view.ProgressView
 import org.jetbrains.anko.runOnUiThread
 
 class PetViewModel(var context: Context, var type: String, var binding: FragmentPetsBinding): ViewModel() {
 
+
+    private var progressView: ProgressView
     init {
+        progressView = ProgressView(context)
+        progressView.setMessage("請稍候...")
+        progressView.show()
         createAdapter()
+
     }
 
     private fun createAdapter() {
@@ -21,6 +28,7 @@ class PetViewModel(var context: Context, var type: String, var binding: Fragment
                     var adapter = MyAdapter(context, list)
                     context.runOnUiThread {
                         binding.adapter = adapter
+
                     }
                 }
             })
@@ -32,9 +40,12 @@ class PetViewModel(var context: Context, var type: String, var binding: Fragment
                     var adapter = MyAdapter(context, list)
                     context.runOnUiThread {
                         binding.adapter = adapter
+                        progressView.close()
                     }
                 }
             })
         }
+
+
     }
 }
