@@ -1,6 +1,8 @@
-package com.billy.petsadoption
+package com.billy.petsadoption.model
 
 import android.util.Log
+import com.billy.petsadoption.HttpInstance
+import com.billy.petsadoption.PetClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

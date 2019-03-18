@@ -1,5 +1,6 @@
 package com.billy.petsadoption
 
+import com.billy.petsadoption.model.Pet
 import retrofit2.Call
 import retrofit2.http.GET
 

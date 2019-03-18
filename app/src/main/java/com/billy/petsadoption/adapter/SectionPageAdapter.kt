@@ -1,4 +1,4 @@
-package com.billy.petsadoption
+package com.billy.petsadoption.adapter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
