@@ -3,11 +3,10 @@ package com.billy.petsadoption.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
-import android.util.Log
-import com.billy.petsadoption.model.Pet
 import com.billy.petsadoption.R
 import com.billy.petsadoption.adapter.SectionPageAdapter
-import com.billy.petsadoption.fragment.PetFragment
+import com.billy.petsadoption.fragment.CatFragment
+import com.billy.petsadoption.fragment.DogFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,12 +21,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
-        var dogFragment = PetFragment()
-        var catFragment = PetFragment()
+        var dogFragment = DogFragment()
+        var catFragment = CatFragment()
 
         var adapter = SectionPageAdapter(supportFragmentManager)
-        adapter.addFragment(dogFragment, "貓")
-        adapter.addFragment(catFragment, "狗")
+        adapter.addFragment(dogFragment, "狗")
+        adapter.addFragment(catFragment, "貓")
         viewPager.adapter = adapter
     }
 }

@@ -25,9 +25,11 @@ class MyAdapter(var context: Context, var list: List<Pet>): RecyclerView.Adapter
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.pet = list.get(position)
+        var pet = list.get(position)
+        holder.binding.pet  = pet
+
         Glide.with(context)
-            .load(list.get(position).album_file)
+            .load(pet.album_file)
             .placeholder(R.drawable.no_img)
             .centerInside()
             .into(holder.binding.petImg)
