@@ -3,4 +3,10 @@
     <declare-styleable name="CircleView">
         <attr name="count" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="Counter">
+        <attr name="startValue" format="integer"/>
+        <attr name="endValue" format="integer"/>
+        <attr name="incrementValue" format="integer"/>
+    </declare-styleable>
 </resources>

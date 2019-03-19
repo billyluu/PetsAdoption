@@ -40,6 +40,22 @@ class Pet {
         }
         get() = field
 
+    fun getCount(callBack: CallBack2) {
+        var result = 0
+        var retrofit = HttpInstance.getInstance()
+        var petClient = retrofit.create(PetClient::class.java)
+        var data = petClient.getPets()
+        data.enqueue(object : Callback<List<Pet>> {
+            override fun onResponse(call: Call<List<Pet>>, response: Response<List<Pet>>) {
+                callBack.getCount(response.body()!!.size)
+            }
+
+            override fun onFailure(call: Call<List<Pet>>, t: Throwable) {
+
+            }
+        })
+    }
+
     fun getCats(callBack: CallBack): ArrayList<Pet> {
         var list = ArrayList<Pet>()
         var retrofit = HttpInstance.getInstance()
@@ -90,6 +106,10 @@ class Pet {
 
     interface CallBack {
         fun onFinish(list: ArrayList<Pet>)
+    }
+
+    interface CallBack2 {
+        fun getCount(count: Int)
     }
 
 

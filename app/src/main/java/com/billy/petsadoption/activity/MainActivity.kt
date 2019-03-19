@@ -3,10 +3,12 @@ package com.billy.petsadoption.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
+import android.util.Log
 import com.billy.petsadoption.R
 import com.billy.petsadoption.adapter.SectionPageAdapter
 import com.billy.petsadoption.fragment.CatFragment
 import com.billy.petsadoption.fragment.DogFragment
+import com.billy.petsadoption.model.Pet
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +20,16 @@ class MainActivity : AppCompatActivity() {
 
         setupViewPager(viewPager)
         tabLayout.setupWithViewPager(viewPager)
+
+        Pet().getCount(object : Pet.CallBack2{
+            override fun getCount(count: Int) {
+                for (i in 0..count) {
+                    runOnUiThread {
+                        count_text.text = i.toString()
+                    }
+                }
+            }
+        })
     }
 
     private fun setupViewPager(viewPager: ViewPager) {

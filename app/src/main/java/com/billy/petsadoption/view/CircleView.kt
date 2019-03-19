@@ -33,26 +33,12 @@ class CircleView: View {
         paint.isAntiAlias = true
         paint.color = Color.BLACK
         paint.alpha = 100
-        canvas!!.drawCircle(horizontalCenter, verticalCenter - 250, circleRadius, paint)
+        canvas!!.drawCircle(horizontalCenter, verticalCenter, circleRadius, paint)
 
         var textPaint = Paint()
         textPaint.textSize = 25f
         textPaint.color = Color.WHITE
 
-        //canvas.drawText("ABC", horizontalCenter, verticalCenter - 250, textPaint)
-//        for (i in 0..count!!) {
-//            canvas.
-//            canvas.drawText("${i}", horizontalCenter, verticalCenter - 250, textPaint)
-//            canvas.save()
-//            canvas.restore()
-//        }
-
-
-
     }
-
-
-
-
 }
 
