@@ -73,7 +73,6 @@ class Pet {
             }
 
             override fun onFailure(call: Call<List<Pet>>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
         })
 
@@ -97,7 +96,7 @@ class Pet {
             }
 
             override fun onFailure(call: Call<List<Pet>>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
         })
 

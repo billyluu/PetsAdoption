@@ -10,6 +10,7 @@ import com.billy.petsadoption.fragment.CatFragment
 import com.billy.petsadoption.fragment.DogFragment
 import com.billy.petsadoption.model.Pet
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.counter_view.*
 
 class MainActivity : AppCompatActivity() {
     private val TAG = javaClass.simpleName
@@ -23,11 +24,10 @@ class MainActivity : AppCompatActivity() {
 
         Pet().getCount(object : Pet.CallBack2{
             override fun getCount(count: Int) {
-                for (i in 0..count) {
-                    runOnUiThread {
-                        count_text.text = i.toString()
-                    }
-                }
+                counter.startValue = 0
+                counter.endValue = count
+                counter.startCount()
+
             }
         })
     }
