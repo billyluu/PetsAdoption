@@ -1,6 +1,8 @@
 package com.billy.petsadoption.view
 
 import android.content.Context
+import android.os.Handler
+import android.os.Message
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.util.Log
@@ -12,9 +14,11 @@ import com.billy.petsadoption.R
 import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.windowManager
 import java.util.*
+import kotlin.concurrent.timerTask
 
 class Counter: FrameLayout {
     private val TAG = javaClass.simpleName
+
     var startValue = 0
         set(value) {
             field = value
@@ -24,6 +28,8 @@ class Counter: FrameLayout {
             field = value
         }
     var incrementValue = 0
+
+
 
     private var metrics: DisplayMetrics? = null
     private var mDesiredSize: Int = 0
@@ -48,7 +54,7 @@ class Counter: FrameLayout {
         var view = LayoutInflater.from(context).inflate(R.layout.counter_view, this, true)
         counter_text = view.findViewById(R.id.count_text)
 
-        startCount()
+
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -60,14 +66,38 @@ class Counter: FrameLayout {
     }
 
     fun startCount() {
-        Log.i(TAG, "startCount")
-        context.runOnUiThread {
-            for (i in startValue..endValue) {
-                counter_text!!.text = i.toString()
+        var currentValue = 0
+        var t = Timer("updateUI", false)
+        t.schedule(timerTask {
+            context.runOnUiThread {
+                if (currentValue < endValue) {
+                    counter_text!!.text = currentValue.toString()
+                    currentValue += 3
+                } else {
+                    counter_text!!.text = endValue.toString()
+                    t.cancel()
+                    hide()
+                }
 
             }
-        }
-
-
+        }, 0L, 1)
     }
+
+    private fun hide() {
+        Timer("hide", false)
+            .schedule(timerTask {
+                context.runOnUiThread {
+                    this@Counter.visibility = View.INVISIBLE
+                }
+            }, 2000)
+    }
+
+//    class CountRun(var view: Counter, start: Float, end: Float): Runnable {
+//
+//        private var currentValue = 0
+//
+//        override fun run() {
+//            view.post
+//        }
+//    }
 }

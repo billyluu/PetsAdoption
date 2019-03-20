@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.util.Log
+import android.view.View
 import com.billy.petsadoption.R
 import com.billy.petsadoption.adapter.SectionPageAdapter
 import com.billy.petsadoption.fragment.CatFragment
@@ -24,12 +25,13 @@ class MainActivity : AppCompatActivity() {
 
         Pet().getCount(object : Pet.CallBack2{
             override fun getCount(count: Int) {
+                counter.visibility = View.VISIBLE
                 counter.startValue = 0
                 counter.endValue = count
                 counter.startCount()
-
             }
         })
+
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
