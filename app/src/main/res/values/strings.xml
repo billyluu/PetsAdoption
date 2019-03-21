@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PetsAdoption</string>
+
+    <string name="header_title">DigitalDrift實作題</string>
 </resources>

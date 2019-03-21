@@ -12,6 +12,7 @@ import com.billy.petsadoption.fragment.DogFragment
 import com.billy.petsadoption.model.Pet
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.counter_view.*
+import org.jetbrains.anko.support.v4.onPageChangeListener
 
 class MainActivity : AppCompatActivity() {
     private val TAG = javaClass.simpleName
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setupViewPager(viewPager)
         tabLayout.setupWithViewPager(viewPager)
 
+
         Pet().getCount(object : Pet.CallBack2{
             override fun getCount(count: Int) {
                 counter.visibility = View.VISIBLE
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        setPageChangeListener()
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
@@ -42,5 +45,38 @@ class MainActivity : AppCompatActivity() {
         adapter.addFragment(dogFragment, "狗")
         adapter.addFragment(catFragment, "貓")
         viewPager.adapter = adapter
+
+    }
+
+    private fun setPageChangeListener() {
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(p0: Int) {
+                
+            }
+
+            override fun onPageScrolled(p0: Int, p1: Float, p2: Int) {
+                when(p0) {
+                    0 -> {
+                        pet_kind.text = "狗"
+                    }
+
+                    1 -> {
+                        pet_kind.text = "貓"
+                    }
+                }
+            }
+
+            override fun onPageSelected(p0: Int) {
+                when(p0) {
+                    0 -> {
+                        pet_kind.text = "狗"
+                    }
+
+                    1 -> {
+                        pet_kind.text = "貓"
+                    }
+                }
+            }
+        })
     }
 }

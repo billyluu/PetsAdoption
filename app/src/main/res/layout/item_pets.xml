@@ -7,13 +7,14 @@
     </data>
 
     <android.support.constraint.ConstraintLayout
+            android:id="@+id/pet_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         <ImageView
                 android:id="@+id/pet_img"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="200dp"
                 android:scaleType="centerInside"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -21,10 +22,11 @@
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 app:layout_constraintTop_toBottomOf="@+id/pet_img"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
+                android:gravity="center"
                 android:orientation="horizontal">
 
             <TextView
@@ -43,8 +45,6 @@
                     android:gravity="center"
                     android:text="@{pet.animal_colour}"/>
         </LinearLayout>
-
-
 
     </android.support.constraint.ConstraintLayout>
 </layout>

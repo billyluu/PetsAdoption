@@ -9,6 +9,7 @@ import com.billy.petsadoption.model.Pet
 import com.billy.petsadoption.R
 import com.billy.petsadoption.databinding.ItemPetsBinding
 import com.bumptech.glide.Glide
+import org.jetbrains.anko.toast
 
 class MyAdapter(var context: Context, var list: List<Pet>): RecyclerView.Adapter<MyAdapter.ViewHolder>() {
 
@@ -34,9 +35,14 @@ class MyAdapter(var context: Context, var list: List<Pet>): RecyclerView.Adapter
             .centerInside()
             .into(holder.binding.petImg)
 
+        holder.binding.petItem.setOnClickListener {
+            context.toast(pet.animal_id)
+        }
+
     }
 
     class ViewHolder: RecyclerView.ViewHolder {
+
         var binding: ItemPetsBinding
             get() = field
             set(value) { field = value }

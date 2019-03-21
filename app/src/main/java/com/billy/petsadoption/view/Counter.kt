@@ -72,7 +72,7 @@ class Counter: FrameLayout {
             context.runOnUiThread {
                 if (currentValue < endValue) {
                     counter_text!!.text = currentValue.toString()
-                    currentValue += 3
+                    currentValue += 5
                 } else {
                     counter_text!!.text = endValue.toString()
                     t.cancel()
