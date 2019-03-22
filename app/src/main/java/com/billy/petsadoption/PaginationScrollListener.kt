@@ -2,16 +2,17 @@ package com.billy.petsadoption
 
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 
 
 abstract class PaginationScrollListener(var layoutManager: LinearLayoutManager) :
     RecyclerView.OnScrollListener() {
 
-    abstract val totalPageCount: Int
+    abstract var totalPageCount: Int
 
-    abstract val isLastPage: Boolean
+    abstract var isLastPage: Boolean
 
-    abstract val isLoading: Boolean
+    abstract var isLoading: Boolean
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)

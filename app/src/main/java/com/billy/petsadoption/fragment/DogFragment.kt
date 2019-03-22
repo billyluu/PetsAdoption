@@ -15,9 +15,7 @@ class DogFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var binding = DataBindingUtil.inflate<FragmentPetsBinding>(inflater,
-            R.layout.fragment_pets, container, false)
-
-        binding.petsRecyclerView.layoutManager = GridLayoutManager(container!!.context, 2)
+            R.layout.fragment_pets, container!!, false)
 
         PetViewModel(container.context, "dog", binding)
 
