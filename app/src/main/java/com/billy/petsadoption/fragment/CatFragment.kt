@@ -22,7 +22,6 @@ class CatFragment: Fragment() {
         var binding = DataBindingUtil.inflate<FragmentPetsBinding>(inflater,
             R.layout.fragment_pets, container!!, false)
 
-
         PetViewModel(container.context, "cat", binding)
 
         return binding.root

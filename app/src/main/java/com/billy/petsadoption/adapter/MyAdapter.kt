@@ -4,14 +4,12 @@ import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Handler
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.billy.petsadoption.model.Pet
 import com.billy.petsadoption.R
 import com.billy.petsadoption.databinding.ItemPetsBinding
 import com.bumptech.glide.Glide
-import org.jetbrains.anko.runOnUiThread
 import org.jetbrains.anko.toast
 
 

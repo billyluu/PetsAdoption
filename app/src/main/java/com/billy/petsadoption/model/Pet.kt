@@ -41,7 +41,6 @@ class Pet {
         get() = field
 
     fun getCount(callBack: CallBack2) {
-        var result = 0
         var retrofit = HttpInstance.getInstance()
         var petClient = retrofit.create(PetClient::class.java)
         var data = petClient.getPets()
@@ -69,7 +68,6 @@ class Pet {
                     }
                 }
                 callBack.onFinish(list)
-                Log.i(TAG, "貓：${list.size}")
             }
 
             override fun onFailure(call: Call<List<Pet>>, t: Throwable) {
@@ -92,7 +90,6 @@ class Pet {
                     }
                 }
                 callBack.onFinish(list)
-                Log.i(TAG, "狗：${list.size}")
             }
 
             override fun onFailure(call: Call<List<Pet>>, t: Throwable) {
