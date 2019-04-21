@@ -22,11 +22,9 @@ class PetViewModel(var context: Context, var type: String, var binding: Fragment
     private var startIndex = 0
     private var endIndex = 20
 
-//    private var progressView: ProgressView
+
     init {
-//        progressView = ProgressView(context)
-//        progressView.setMessage("請稍候...")
-//        progressView.show()
+
         createAdapter()
 
     }

@@ -1,5 +1,10 @@
 package com.billy.petsadoption.activity
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
+import android.databinding.Observable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
@@ -11,30 +16,50 @@ import com.billy.petsadoption.fragment.CatFragment
 import com.billy.petsadoption.fragment.DogFragment
 import com.billy.petsadoption.model.Pet
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.counter_view.*
-import org.jetbrains.anko.support.v4.onPageChangeListener
+import com.billy.petsadoption.databinding.ActivityMainBinding
+import com.billy.petsadoption.view.ProgressView
+
 
 class MainActivity : AppCompatActivity() {
     private val TAG = javaClass.simpleName
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var progressView: ProgressView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setProgress()
+        binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        setCount()
+
         setupViewPager(viewPager)
         tabLayout.setupWithViewPager(viewPager)
+        setPageChangeListener()
+    }
 
+    private fun setCount() {
+        getViewModel().startCount()
 
-        Pet().getCount(object : Pet.CallBack2{
-            override fun getCount(count: Int) {
-                counter.visibility = View.VISIBLE
-                counter.startValue = 0
-                counter.endValue = count
-                counter.startCount()
+        getViewModel().IsLoadingEnd.observe(this, Observer {
+            if (it!!) {
+                progressView.close()
             }
         })
+        getViewModel().startCount.observe(this, Observer {
+            binding.counter.visibility = View.VISIBLE
+            binding.counter.startValue = 0
+            binding.counter.endValue = it!!
+            binding.counter.startCount()
+        })
+    }
 
-        setPageChangeListener()
+    private fun setProgress() {
+        progressView = ProgressView(this)
+        progressView.setMessage("請稍候...")
+        progressView.show()
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
@@ -78,5 +103,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun getViewModel(): MainViewModel {
+        return ViewModelProviders.of(this, MainViewModelFactory()).get(MainViewModel::class.java)
     }
 }
